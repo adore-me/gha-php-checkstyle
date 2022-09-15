@@ -1,13 +1,14 @@
 # gha-php-checkstyle
 
 ## Description
-Run checkstyle with custom PHP image.
+Run PHP checkstyle with custom PHP image.
 
 ## Inputs
-| Key                   | Required | Default                                            | Description                                                                                   |
-|-----------------------|----------|----------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| **php-image**         | **true** | `''`                                               | PHP image to use (fully qualified image address. ex: quay.io/adoreme/nginx-fpm-alpine:v0.0.1) |
-| **report-path**       | **true** | `./build/reports/php-checkstyle.xml`               | Report file path (where checkstyle results will be saved).                                    |
+| Key                  | Required | Default              | Description                                                                                   |
+|----------------------|----------|----------------------|-----------------------------------------------------------------------------------------------|
+| **php-image**        | **true** | `N/A`                | PHP image to use (fully qualified image address. ex: quay.io/adoreme/nginx-fpm-alpine:v0.0.1) |
+| **report-dir**       | **true** | `build/reports`      | Report file directory (no trailing `/`).                                                      |
+| **report-file-name** | **true** | `php-checkstyle.xml` | Report file name.                                                                             |
 
 ## Outputs
 **N/A**
@@ -22,6 +23,6 @@ You can run [docker/login-action@v1](https://github.com/docker/login-action) bef
 
 ```yaml
 steps:
-  - name: 'Run Checkstyle'
-    uses: adore-me/php-checkstyle-action@master
+  - name: 'Run PHP Checkstyle'
+    uses: adore-me/gha-php-checkstyle@master
 ```

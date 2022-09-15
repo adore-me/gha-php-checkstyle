@@ -4,10 +4,14 @@ inputs:
   php-image:
     description: 'The PHP image to use'
     required: true
-  report-path:
-    description: 'PHP checkstyle report path'
+  report-dir:
+    description: 'PHP checkstyle report directory'
     required: true
-    default: './build/reports/php-checkstyle.xml'
+    default: 'build/reports'
+  report-file-name:
+    description: 'PHP checkstyle report file name'
+    required: true
+    default: 'php-checkstyle.xml'
 runs:
   using: "composite"
   steps:
@@ -16,14 +20,10 @@ runs:
       shell: bash
       env:
         INPUT_PHP_IMAGE: ${{ inputs.php-image }}
-        INPUT_PHPCS_REPORT_PATH: ${{ inputs.report-path }}
+        INPUT_PHPCS_REPORT_PATH: '${{ inputs.report-dir }}/${{ inputs.report-file-name }}'
     - name: 'Run Checkstyle Report'
       uses: jwgmeligmeyling/checkstyle-github-action@master
       with:
         name: 'PHP Checkstyle'
         title: 'Checkstyle report'
-        path: ${{ inputs.report-path }}
-    - name: 'TODO: Notify in PR'
-      run: |
-        echo 'PHP Checkstyle Complete'
-      shell: bash
+        path: '${{ inputs.report-dir }}/${{ inputs.report-file-name }}'
