@@ -17,7 +17,7 @@ Run PHP checkstyle with custom PHP image.
 ℹ This action doesn't handle docker registry authentication (e.g. for private images).
 You can run [docker/login-action@v1](https://github.com/docker/login-action) before this step.
 
-ℹ It uses [checkstyle-github-action](https://github.com/jwgmeligmeyling/checkstyle-github-action) for publishing checkstyle results.
+ℹ It uses [checkstyle-github-action](https://github.com/adore-me/checkstyle-github-action) for publishing checkstyle results.
 
 ### Example of step configuration and usage:
 

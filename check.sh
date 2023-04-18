@@ -13,6 +13,8 @@ if [ -z "$INPUT_PHP_IMAGE" ]; then
 fi
 
 echo -e "${BL}Info:${NC} Running PHP Checkstyle with image: ${GR}$INPUT_PHP_IMAGE${NC}"
+echo -e "${BL}Info:${NC} Checkstyle report path: ${GR}$INPUT_PHPCS_REPORT_PATH${NC}"
+echo -e "${BL}Info:${NC} Running command: ${GR}./vendor/bin/phpcs --standard=PSR2 --report=checkstyle --report-file=${INPUT_PHPCS_REPORT_PATH} app/ || true${NC}"
 docker run \
   --platform linux/amd64 \
   -v "$PWD":/var/www \
