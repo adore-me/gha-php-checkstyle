@@ -1,4 +1,4 @@
-name: 'AdoreMe Tech PHP Checkstyle Composite Action'
+name: 'AdoreMe Tech PHP Checkstyle Composite GH Action'
 description: 'Run PHP checkstyle with custom PHP image'
 inputs:
   php-image:
