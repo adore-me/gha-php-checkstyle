@@ -12,6 +12,10 @@ inputs:
     description: 'PHP checkstyle report file name'
     required: true
     default: 'php-checkstyle.xml'
+  phpcs-standard:
+    description: 'PHP checkstyle standard to use'
+    required: false
+    default: 'PSR2'
 runs:
   using: "composite"
   steps:
@@ -21,6 +25,7 @@ runs:
       env:
         INPUT_PHP_IMAGE: ${{ inputs.php-image }}
         INPUT_PHPCS_REPORT_PATH: '${{ inputs.report-dir }}/${{ inputs.report-file-name }}'
+        INPUT_PHPCS_STANDARD: ${{ inputs.phpcs-standard }}
     - name: 'Run Checkstyle Report'
       uses: adore-me/checkstyle-github-action@v1.0.0
       with:
