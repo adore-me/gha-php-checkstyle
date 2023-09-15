@@ -12,6 +12,10 @@ if [ -z "$INPUT_PHP_IMAGE" ]; then
   exit 1
 fi
 
+if [ -z "$INPUT_PHPCS_STANDARD" ]; then
+  INPUT_PHPCS_STANDARD="PSR2"
+fi
+
 APP_DIR=""
 # Check if symfony.lock file exists
 if [ -f "symfony.lock" ]; then
@@ -22,7 +26,7 @@ else
   APP_DIR="app"
 fi
 
-CMD="./vendor/bin/phpcs --standard=PSR2 --report=checkstyle --report-file=${INPUT_PHPCS_REPORT_PATH} ${APP_DIR}/ || true"
+CMD="./vendor/bin/phpcs --standard=${INPUT_PHPCS_STANDARD} --report=checkstyle --report-file=${INPUT_PHPCS_REPORT_PATH} ${APP_DIR}/ || true"
 
 echo -e "${BL}Info:${NC} Running PHP Checkstyle with image: ${GR}$INPUT_PHP_IMAGE${NC}"
 echo -e "${BL}Info:${NC} Checkstyle report path: ${GR}$INPUT_PHPCS_REPORT_PATH${NC}"
