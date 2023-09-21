@@ -16,14 +16,19 @@ if [ -z "$INPUT_PHPCS_STANDARD" ]; then
   INPUT_PHPCS_STANDARD="PSR2"
 fi
 
-APP_DIR=""
-# Check if symfony.lock file exists
-if [ -f "symfony.lock" ]; then
-  echo -e "${BL}Info:${NC} Symfony framework detected. Setting APP_DIR to 'src'${NC}"
-  APP_DIR="src"
+if [ -z "$INPUT_APP_DIR" ]; then
+  APP_DIR=""
+  # Check if symfony.lock file exists
+  if [ -f "symfony.lock" ]; then
+    echo -e "${BL}Info:${NC} Symfony framework detected. Setting APP_DIR to 'src'${NC}"
+    APP_DIR="src"
+  else
+    echo -e "${BL}Info:${NC} Defaulting to Laravel framework. Setting APP_DIR to 'app'${NC}"
+    APP_DIR="app"
+  fi
 else
-  echo -e "${BL}Info:${NC} Defaulting to Laravel framework. Setting APP_DIR to 'app'${NC}"
-  APP_DIR="app"
+  echo -e "${BL}Info:${NC} APP_DIR provided. Setting APP_DIR to '$INPUT_APP_DIR'${NC}"
+  APP_DIR="$INPUT_APP_DIR"
 fi
 
 CMD="./vendor/bin/phpcs --standard=${INPUT_PHPCS_STANDARD} --report=checkstyle --report-file=${INPUT_PHPCS_REPORT_PATH} ${APP_DIR}/ || true"
