@@ -16,6 +16,10 @@ inputs:
     description: 'PHP checkstyle standard to use'
     required: false
     default: 'PSR2'
+  app-dir:
+    description: 'Application directory - use without trailing slash. When empty will try to guess if is `src` or `app`.'
+    required: false
+    default: ''
 runs:
   using: "composite"
   steps:
@@ -26,6 +30,7 @@ runs:
         INPUT_PHP_IMAGE: ${{ inputs.php-image }}
         INPUT_PHPCS_REPORT_PATH: '${{ inputs.report-dir }}/${{ inputs.report-file-name }}'
         INPUT_PHPCS_STANDARD: ${{ inputs.phpcs-standard }}
+        INPUT_APP_DIR: ${{ inputs.app-dir }}
     - name: 'Run Checkstyle Report'
       uses: adore-me/checkstyle-github-action@v1.0.0
       with:

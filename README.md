@@ -10,6 +10,7 @@ Run PHP checkstyle with custom PHP image.
 | **report-dir**       | **true**  | `build/reports`      | Report file directory (no trailing `/`).                                                      |
 | **report-file-name** | **true**  | `php-checkstyle.xml` | Report file name.                                                                             |
 | **phpcs-standard**   | **false** | `PSR2`               | PHP checkstyle standard to use.                                                               |
+| **app-dir**          | **false** | ``                   | Source directory (no trailing `/`). When empty will try to guess if is `src` or `app`.        |
 
 ## Outputs
 **N/A**
