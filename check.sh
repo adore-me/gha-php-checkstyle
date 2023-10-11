@@ -31,6 +31,11 @@ else
   APP_DIR="$INPUT_APP_DIR"
 fi
 
+if [ ! -f "./vendor/bin/phpcs" ]; then
+  echo "::error title=Missing ./vendor/bin/phpcs::phpcs not found. Please check dependencies, or disable phpcs from ci.yaml!"
+  exit 1
+fi
+
 CMD="./vendor/bin/phpcs --standard=${INPUT_PHPCS_STANDARD} --report=checkstyle --report-file=${INPUT_PHPCS_REPORT_PATH} ${APP_DIR}/ || true"
 
 echo -e "${BL}Info:${NC} Running PHP Checkstyle with image: ${GR}$INPUT_PHP_IMAGE${NC}"
