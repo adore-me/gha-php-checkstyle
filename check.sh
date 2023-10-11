@@ -32,7 +32,6 @@ else
 fi
 
 if [ ! -f "./vendor/bin/phpcs" ]; then
-  echo -e "${RD}Error:${NC} phpcs not found. Please check dependencies!${NC}"
   echo "::error title=Missing ./vendor/bin/phpcs::phpcs not found. Please check dependencies, or disable phpcs from ci.yaml!"
   exit 1
 fi
