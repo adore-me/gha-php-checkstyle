@@ -33,7 +33,7 @@ fi
 
 if [ ! -f "./vendor/bin/phpcs" ]; then
   echo -e "${RD}Error:${NC} phpcs not found. Please check dependencies!${NC}"
-  echo "::error file={""},line={""},endLine={""},title={Missing phpcs}::{message}"
+  echo "::error file='',line='',endLine='',title=./vendor/bin/phpcs::{message}"
   exit 1
 fi
 
