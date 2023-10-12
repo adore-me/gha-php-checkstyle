@@ -36,7 +36,13 @@ if [ ! -f "./vendor/bin/phpcs" ]; then
   exit 1
 fi
 
-CMD="./vendor/bin/phpcs --standard=${INPUT_PHPCS_STANDARD} --report=checkstyle --report-file=${INPUT_PHPCS_REPORT_PATH} ${APP_DIR}/ || true"
+# If we have files .phpcs.xml, phpcs.xml, .phpcs.xml.dist, or phpcs.xml.dist, then we do not provide path or standard. let it use the config file.
+if [ -f "./phpcs.xml" ] || [ -f "./phpcs.xml.dist" ] || [ -f "./.phpcs.xml" ] || [ -f "./.phpcs.xml.dist" ]; then
+  echo -e "${BL}Info:${NC} phpcs config file found.${NC}"
+  CMD="./vendor/bin/phpcs --report=checkstyle --report-file=${INPUT_PHPCS_REPORT_PATH} || true"
+else
+  CMD="./vendor/bin/phpcs --standard=${INPUT_PHPCS_STANDARD} --report=checkstyle --report-file=${INPUT_PHPCS_REPORT_PATH} ${APP_DIR}/ || true"
+fi
 
 echo -e "${BL}Info:${NC} Running PHP Checkstyle with image: ${GR}$INPUT_PHP_IMAGE${NC}"
 echo -e "${BL}Info:${NC} Checkstyle report path: ${GR}$INPUT_PHPCS_REPORT_PATH${NC}"
