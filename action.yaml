@@ -32,7 +32,7 @@ runs:
         INPUT_PHPCS_STANDARD: ${{ inputs.phpcs-standard }}
         INPUT_APP_DIR: ${{ inputs.app-dir }}
     - name: 'Run Checkstyle Report'
-      uses: adore-me/checkstyle-github-action@v1.0.2
+      uses: adore-me/checkstyle-github-action@v1.0.4
       with:
         name: 'PHP Checkstyle'
         title: 'Checkstyle report'
